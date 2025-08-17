@@ -1,4 +1,4 @@
-:root { --bg:#1f1f23; --card:#00CCCC; --muted:#2a2a2f; --text:#fff; }
+:root { --bg:#1f1f23; --card:#6699ff; --muted:#2a2a2f; --text:#fff; }
 *{box-sizing:border-box;font-family:system-ui,Segoe UI,Roboto,Arial;}
 body{margin:0;background:var(--bg);color:var(--text);display:flex;flex-direction:column;min-height:100vh;}
 header, footer{display:flex;align-items:center;gap:.5rem;padding:.75rem;background:var(--muted);position:sticky;top:0;z-index:3}
