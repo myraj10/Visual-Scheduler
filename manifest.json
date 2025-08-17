@@ -1,11 +1,20 @@
 {
+  "id": "/",
   "name": "Visual Scheduler",
   "short_name": "Scheduler",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
+  "orientation": "portrait",
   "theme_color": "#4CAF50",
   "description": "A simple visual scheduler for kids",
+  "dir": "ltr",
+  "lang": "en",
+  "prefer_related_applications": false,
+  "launch_handler": {
+    "client_mode": "auto"
+  },
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -15,6 +24,18 @@
     {
       "src": "icons/icon-512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/screenshot1.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    },
+    {
+      "src": "images/screenshot2.png",
+      "sizes": "540x720",
       "type": "image/png"
     }
   ]
