@@ -12,6 +12,7 @@
   "dir": "ltr",
   "lang": "en",
   "prefer_related_applications": false,
+  "categories": ["education", "productivity", "kids"],
   "launch_handler": {
     "client_mode": "auto"
   },
