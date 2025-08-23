@@ -335,53 +335,31 @@ function openViewer(i){
   }
 
   // ----- Drag reorder (desktop) -----
+let pendingReorder = null;
+
 function wireDragDrop() {
-  const list = document.getElementById("taskList");
-  let draggingEl = null;
+  var list = document.getElementById("taskList");
+  if (!list) return;
 
-  list.addEventListener("dragstart", function (e) {
-    if (e.target.classList.contains("task")) {
-      draggingEl = e.target;
-      draggingEl.classList.add("dragging");
-    }
-  });
-
-  list.addEventListener("dragend", function (e) {
-    if (draggingEl) {
-      draggingEl.classList.remove("dragging");
-      draggingEl = null;
-    }
-  });
-
-  list.addEventListener("dragover", function (e) {
-    e.preventDefault();
-    const afterElement = getDragAfterElement(list, e.clientY);
-    if (afterElement == null) {
-      list.appendChild(draggingEl);
-    } else {
-      list.insertBefore(draggingEl, afterElement);
-    }
-  });
-
-  list.addEventListener("drop", function (e) {
-    e.preventDefault();
-    saveReorderedTasks(); // Optional: implement this if needed
-  });
-
-  function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll('.task:not(.dragging)')];
-
-    return draggableElements.reduce((closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    }, { offset: Number.NEGATIVE_INFINITY }).element;
+  // Destroy existing Sortable instance if any
+  if (list._sortable) {
+    list._sortable.destroy();
   }
+
+  var sortable = Sortable.create(list, {
+    animation: 150,
+    handle: '.reorder-mode',
+    draggable: '.task',
+    onEnd: function () {
+      // Don't commit yet — just record the new order
+      const ids = Array.from(list.children).map(taskEl => parseInt(taskEl.dataset.index));
+      pendingReorder = ids;
+    }
+  });
+
+  list._sortable = sortable;
 }
+
 
   // ----- Global UI -----
   function installGlobal(){
@@ -483,19 +461,31 @@ function wireDragDrop() {
   if (!reorderBtn) return;
 
   reorderBtn.addEventListener("click", function () {
-    var isReordering = document.body.classList.toggle("reordering");
+    const isReordering = document.body.classList.toggle("reordering");
     reorderBtn.textContent = isReordering ? "✓" : "↕";
     reorderBtn.title = isReordering ? "Done" : "Reorder";
 
-    var tasks = document.querySelectorAll("#taskList .task");
-    tasks.forEach(function (task) {
+    const tasks = document.querySelectorAll("#taskList .task");
+    tasks.forEach(task => {
       if (isReordering) {
-        task.setAttribute("draggable", true);
         task.classList.add("reorder-mode");
       } else {
-        task.removeAttribute("draggable");
         task.classList.remove("reorder-mode");
       }
     });
+
+    if (!isReordering && pendingReorder) {
+      // Apply pending reorder
+      const d = getDay();
+      const newTasks = [];
+      pendingReorder.forEach(i => {
+        if (d.tasks[i]) newTasks.push(d.tasks[i]);
+      });
+      d.tasks = newTasks;
+
+      saveData();
+      pendingReorder = null;
+      render();
+    }
   });
 })();
