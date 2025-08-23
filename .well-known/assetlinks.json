@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "io.github.myraj10.visualscheduler",
+    "sha256_cert_fingerprints":
+    ["41:A5:E0:33:60:ED:32:22:30:E8:DE:D2:F7:2B:E9:84:10:5C:EC:72:44:1B:0A:F1:0C:BF:CB:E8:21:C5:D1:5D"]
+  }
+}]
