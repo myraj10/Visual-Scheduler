@@ -24,7 +24,7 @@
     <h1 id="dayName">Thursday</h1>
     <button id="editDayName">✎</button>
     <button id="forwardDay" aria-label="Next day">▶</button>
-    <button id="reorderToggle" title="Reorder">↕</button>
+    <button id="reorderToggle" title="Reorder" class="reorder-icon">↕</button>
   </header>
 
   <main>
@@ -117,9 +117,7 @@
   <!-- Confetti canvas -->
   <canvas id="confettiCanvas"></canvas>
 
-<audio id="applause" preload="auto">
-  <source src="https://myraj10.github.io/Visual-Scheduler/assets/sounds/applause.mp3" type="audio/mpeg">
-</audio>
+  <audio id="applause" src="assets/sounds/applause.mp3" preload="auto"></audio>
   <script src="app.js"></script>
 
 <script>
