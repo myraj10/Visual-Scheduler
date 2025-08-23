@@ -1,12 +1,11 @@
-const CACHE_NAME = 'visual-scheduler-cache-v2';
+const CACHE_NAME = 'visual-scheduler-cache-v3';
 const urlsToCache = [
-  '/',
   'index.html',
   'manifest.json',
   'assets/sounds/applause.mp3',
   'icons/icon-192.png',
   'icons/icon-512.png',
-  // Add the paths to your default task images here
+  // Caching all default task images for offline use
   'assets/images/defaults/wake_up.png',
   'assets/images/defaults/dress_up.png',
   'assets/images/defaults/wash_hands.png',
@@ -35,6 +34,7 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('Opened cache');
+        // Using addAll which is atomic: if one file fails, the whole operation fails.
         return cache.addAll(urlsToCache);
       })
   );
@@ -44,7 +44,11 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        return response || fetch(event.request);
+        // Cache hit - return response
+        if (response) {
+          return response;
+        }
+        return fetch(event.request); // Otherwise, fetch from network
       })
   );
 });
@@ -56,7 +60,7 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
+            return caches.delete(cacheName); // Deleting old caches
           }
         })
       );
