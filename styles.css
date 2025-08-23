@@ -80,3 +80,15 @@ hr{border:none;border-top:1px solid #555;margin:.5rem 0}
   color: #000;
   border: 2px solid #ccc;
 }
+
+.task button {
+  background-color: #ffffff;   /* Light background for better contrast */
+  color: #000000;              /* Dark icon/text for visibility */
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.task button:hover {
+  background-color: #f0f0f0;   /* Subtle hover for clarity */
+  color: #000;
+}
