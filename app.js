@@ -348,7 +348,7 @@ function wireDragDrop() {
 
   var sortable = Sortable.create(list, {
     animation: 150,
-    handle: '.reorder-mode',
+    handle: '.drag-handle',
     draggable: '.task',
     onEnd: function () {
       // Don't commit yet — just record the new order
