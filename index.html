@@ -238,28 +238,34 @@
       box-shadow: 0 5px 15px #0000004d;
     }
 
-    /* --- NEW: Modern Transparent Icon Styles --- */
+    /* --- UPDATED: Modern Transparent Icon Styles --- */
     .task .edit, .task .delete, .task .done {
       background: none;
       border: none;
       padding: 0.5rem;
       margin: 0;
-      font-size: 1.4rem;
       cursor: pointer;
       transition: transform 0.2s ease;
       filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .task .edit:hover, .task .delete:hover, .task .done:hover {
       transform: scale(1.15);
     }
-    .task .edit {
-      color: #ffffff;
+    .task .icon-svg {
+        width: 24px;
+        height: 24px;
     }
-    .task .delete {
-      color: #ff6b6b;
+    .task .edit .icon-svg {
+      fill: #ffffff;
     }
-    .task .done {
-      color: #51cf66;
+    .task .delete .icon-svg {
+      fill: #ff6b6b;
+    }
+    .task .done .icon-svg {
+      fill: #51cf66;
     }
   </style>
 </head>
@@ -283,7 +289,7 @@
     <button id="settingsBtn" title="Settings">⚙️</button>
   </footer>
 
-  <!-- Task item template -->
+  <!-- UPDATED Task item template with SVG icons -->
   <template id="taskItemTpl">
     <li class="task">
       <span class="drag-handle">☰</span>
@@ -292,9 +298,15 @@
         <div class="name"></div>
         <div class="time"></div>
       </div>
-      <button class="edit" title="Edit">⋯</button>
-      <button class="delete" title="Delete">🗑</button>
-      <button class="done" title="Done">✔</button>
+      <button class="edit" title="Edit">
+        <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="12" r="2"/></svg>
+      </button>
+      <button class="delete" title="Delete">
+        <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+      </button>
+      <button class="done" title="Done">
+        <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+      </button>
     </li>
   </template>
 
