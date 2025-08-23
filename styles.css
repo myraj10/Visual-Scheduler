@@ -4,8 +4,18 @@ body{margin:0;background:var(--bg);color:var(--text);display:flex;flex-direction
 header, footer{display:flex;align-items:center;gap:.5rem;padding:.75rem;background:var(--muted);position:sticky;top:0;z-index:3}
 footer{position:sticky;bottom:0;top:auto;}
 h1{flex:1;text-align:center;margin:0;font-size:1.1rem}
-button{background:#3a3a44;color:#fff;border:none;border-radius:12px;padding:.5rem .7rem;cursor:pointer}
+button{background:#3a3a44;color:#fff;border:none;border-radius:12px;padding:.5rem .7rem;cursor:pointer;font-size:1.2rem;}
 main{padding:.75rem;flex:1;overflow:auto}
+
+header button,
+footer button {
+  color: #000;
+  background-color: #fff;
+}
+header button:hover,
+footer button:hover {
+  background-color: #e0e0e0;
+}
 
 ul.tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
 .task{display:flex;align-items:center;gap:.6rem;background:var(--card);border-radius:14px;padding:.5rem;transition:transform .15s ease}
@@ -27,14 +37,12 @@ button.danger{background:#8b2d2d}
 .setup-actions{margin:.3rem 0}
 hr{border:none;border-top:1px solid #555;margin:.5rem 0}
 
-/* In-app confirm dialog */
 #confirmDialog{border:none;border-radius:16px;padding:1rem;max-width:360px;width:90%}
 #confirmDialog::backdrop{background:#0008}
 #confirmDialog .confirm{display:flex;flex-direction:column;gap:.75rem}
 #confirmDialog p{margin:0;font-size:1rem}
 #confirmDialog menu{display:flex;justify-content:flex-end;gap:.5rem;margin:0}
 
-/* Confetti canvas (overlay) */
 #confettiCanvas{
   position:fixed;
   inset:0;
@@ -44,7 +52,6 @@ hr{border:none;border-top:1px solid #555;margin:.5rem 0}
   z-index: 20;
 }
 
-/* Activity Viewer */
 #viewerDialog{border:none;border-radius:16px;padding:0;max-width:min(92vw,520px);width:92%}
 #viewerDialog::backdrop{background:#0008}
 #viewerDialog .viewer{display:flex;flex-direction:column;gap:.75rem}
@@ -52,3 +59,24 @@ hr{border:none;border-top:1px solid #555;margin:.5rem 0}
 #viewerDialog menu{display:flex;justify-content:flex-end;gap:.5rem;margin:0;padding:.75rem}
 #viewerDialog button{background:#3a3a44;color:#fff;border:none;border-radius:12px;padding:.55rem .9rem;cursor:pointer}
 #viewerDialog button.primary{background:#2e7d32}
+
+
+/* ✨ Drag and reorder styles */
+.reorder-mode .task {cursor: grab;opacity: 0.85;}
+.task.dragging {opacity: 0.5;}
+
+/* ✅ Better icon visibility (for reorder button) */
+.reorder-icon {
+  font-size: 1.3rem;
+  filter: drop-shadow(0 0 2px #0008);
+  color: #fff;
+  cursor: pointer;
+}
+
+.reorder-icon {
+  font-size: 1.4rem;
+  font-weight: bold;
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #ccc;
+}
