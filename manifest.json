@@ -13,6 +13,11 @@
   "dir": "ltr",
   "categories": ["education", "productivity", "kids"],
   "prefer_related_applications": false,
+  "serviceworker": {
+    "src": "service-worker.js",
+    "scope": "/Visual-Scheduler/",
+    "use_cache": false
+  },
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -48,4 +53,3 @@
     }
   ]
 }
-
