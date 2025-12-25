@@ -1,9 +1,12 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "io.github.myraj10.visualscheduler",
-    "sha256_cert_fingerprints":
-    ["41:A5:E0:33:60:ED:32:22:30:E8:DE:D2:F7:2B:E9:84:10:5C:EC:72:44:1B:0A:F1:0C:BF:CB:E8:21:C5:D1:5D"]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.myraj10.visualscheduler",
+      "sha256_cert_fingerprints": [
+        "0C:C8:FC:94:29:B0:99:57:EE:46:D3:BB:8A:A0:BD:51:D2:9D:D6:52:DD:9E:8E:63:48:54:52:10:61:86:CE:C4"
+      ]
+    }
   }
-}]
+]
